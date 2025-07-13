@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About - Joel Beard Design</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: black;
+      color: white;
+      font-family: sans-serif;
+      padding: 5vh 10vw;
+      animation: fadeIn 2s ease-in forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 4rem;
+    }
+
+    .logo-placeholder {
+      background: none;
+      padding: 0;
+      border-radius: 0;
+    }
+
+    .logo-placeholder a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .right-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .right-links .text-link {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      position: relative;
+    }
+
+    .right-links .text-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -2px;
+      left: 0;
+      background-color: white;
+      transition: width 0.3s ease;
+    }
+
+    .right-links .text-link:hover::after {
+      width: 100%;
+    }
+
+    .right-links img {
+      height: 1rem;
+      vertical-align: middle;
+    }
+
+    .content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 5%;
+    }
+
+    .about-highlight {
+      font-size: 1.43rem;
+      line-height: 2.2rem;
+      width: 40%;
+    }
+
+    .about-secondary {
+      font-size: 0.9rem;
+      line-height: 1.6rem;
+      width: 40%;
+    }
+
+    .about-secondary p + p {
+      margin-top: 1.5rem;
+      position: relative;
+    }
+
+    .about-secondary p + p::before {
+      content: "";
+      display: block;
+      width: 75%;
+      height: 1px;
+      background: white;
+      margin: 1rem 0;
+      opacity: 0.4;
+    }
+
+    @media (max-width: 750px) {
+      body {
+        padding: 5vh 5vw;
+      }
+
+      .content-wrapper {
+        flex-direction: column;
+      }
+
+      .about-highlight,
+      .about-secondary {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-placeholder"><a href="/"><img class="shared-logo" src="DesignLogoFinal-01-white.png" alt="Logo" height="40"></a></div>
+    <div class="right-links">
+      <a href="./work.html" class="text-link">Work</a>
+      <a href="./about_page.html" class="text-link">About</a>
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" style="height: 1rem;"></a>
+    </div>
+  </header>
+
+  <div class="content-wrapper">
+    <div class="about-highlight">
+      <p>
+        Joel Beard is a multidisciplinary designer, illustrator and motion artist currently based in the UK.
+      </p>
+    </div>
+
+    <div class="about-secondary">
+      <p>
+        He focuses on visual identity, animated storytelling and experimental creative direction — drawing inspiration from everything between antique botanical prints to modern UI design. His work often includes a blend of organic, editorial, and cinematic visuals.
+      </p>
+      <p>
+        Available for freelance, remote and collaborative work.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

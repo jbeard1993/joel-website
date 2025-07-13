@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Background Example</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      animation: fadeIn 2s ease-in forwards;
+      opacity: 0;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    #bg-video, .hover-image {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: -2;
+      opacity: 1;
+    }
+
+    .hover-image {
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .video-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 0;
+    }
+
+    .overlay {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-family: 'Lexend', sans-serif;
+      padding: 0 1rem;
+    }
+
+    nav.center-nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 1rem;
+      font-size: 2.53rem;
+      flex-wrap: wrap;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    nav.center-nav a,
+    .right-links .text-link {
+      color: white;
+      text-decoration: none;
+      position: relative;
+      transition: opacity 0.3s ease;
+    }
+
+    nav.center-nav a::after,
+    .right-links .text-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: -4px;
+      background: white;
+      transition: width 0.3s ease;
+    }
+
+    nav.center-nav a:hover::after,
+    .right-links .text-link:hover::after {
+      width: 100%;
+    }
+
+    .top-bar {
+      position: absolute;
+      top: 5%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 7%;
+      align-items: center;
+      color: white;
+      font-family: 'Roc Grotesk', sans-serif;
+      flex-wrap: wrap;
+      z-index: 1;
+    }
+
+    .logo-placeholder img {
+      height: 40px;
+    }
+
+    .logo-placeholder a {
+      display: inline-block;
+    }
+
+    .right-links {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+    }
+
+    .right-links .text-link {
+      font-size: 1rem;
+    }
+
+    .right-links img {
+      height: 1rem;
+      vertical-align: middle;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .hamburger div {
+      width: 25px;
+      height: 3px;
+      background: white;
+    }
+
+    @media (max-width: 750px) {
+  nav.center-nav {
+    font-size: 1.5rem;
+    gap: 0.5rem;
+  }
+  .top-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .right-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0,0,0,0.7);
+    padding: 1rem;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    border-radius: 6px;
+  }
+  .right-links.active {
+      display: flex;
+      opacity: 1;
+    display: flex;
+  }
+}
+  .top-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+  }
+  .hamburger {
+    display: flex;
+  }
+  .right-links {
+    display: none;
+    flex-direction: column;
+    background: rgba(0,0,0,0.7);
+    padding: 1rem;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+    border-radius: 6px;
+  }
+  .right-links.active {
+    display: flex;
+  }
+}
+      nav.center-nav {
+        font-size: 1.5rem;
+        gap: 0.5rem;
+      }
+      .top-bar {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+      }
+      .hamburger {
+        display: flex;
+      }
+      .right-links {
+        display: none;
+        flex-direction: column;
+        background: rgba(0,0,0,0.7);
+        padding: 1rem;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        border-radius: 6px;
+      }
+      .right-links.active {
+        display: flex;
+      }
+    }
+      @keyframes dropdown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .scroll-arrow {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      font-size: 2rem;
+      animation: bounce 2s infinite;
+      color: white;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+</style>
+</head>
+<body>
+  <video id="bg-video" autoplay="" loop="" muted="" playsinline="" poster="fallback.jpg">
+    <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <img class="hover-image" id="hover-design" src="att.suU0FesQlbnvnPs9ZTO5zx9hwe3OT-bXMJ1ZkWKke0M.png" alt="Design Hover">
+  <img class="hover-image" id="hover-motion" src="att.suU0FesQlbnvnPs9ZTO5zx9hwe3OT-bXMJ1ZkWKke0M.png" alt="Motion Hover">
+  <img class="hover-image" id="hover-artwork" src="att.suU0FesQlbnvnPs9ZTO5zx9hwe3OT-bXMJ1ZkWKke0M.png" alt="Artwork Hover">
+
+  <div class="video-overlay"></div>
+
+  <div class="top-bar">
+    <div class="logo-placeholder" style="padding-left: 7%;"><a href="/"><img src="DesignLogoFinal-01-white.png" alt="Logo"></a></div>
+    <div class="hamburger" style="padding-right: 7%;" onclick="toggleMenu()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="right-links" id="rightLinks">
+      <a href="./work.html" class="text-link">Work</a>
+      <a href="./about_page.html" class="text-link">About</a>
+      <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+    </div>
+  </div>
+
+  <div class="overlay">
+    <nav class="center-nav">
+      <a href="./index.html" onmouseover="showImage('design')" onmouseout="hideImages()">Design</a>
+      <span>/</span>
+      <a href="./index.html" onmouseover="showImage('motion')" onmouseout="hideImages()">Motion</a>
+      <span>/</span>
+      <a href="./index.html" onmouseover="showImage('artwork')" onmouseout="hideImages()">Artwork</a>
+    </nav>
+  </div>
+
+  <script>
+    function toggleMenu() {
+  const menu = document.getElementById('rightLinks');
+  const isActive = menu.classList.toggle('active');
+  if (isActive) {
+    menu.style.display = 'flex';
+    setTimeout(() => menu.style.opacity = '1', 10);
+  } else {
+    menu.style.opacity = '0';
+    setTimeout(() => menu.style.display = 'none', 400);
+  }
+}
+
+    function showImage(type) {
+      document.querySelectorAll('.hover-image').forEach(img => img.style.opacity = 0);
+      const target = document.getElementById('hover-' + type);
+      if (target) target.style.opacity = 1;
+    }
+
+    function hideImages() {
+      document.querySelectorAll('.hover-image').forEach(img => img.style.opacity = 0);
+    }
+</script>
+<div style="position: fixed; top: 50%; left: 50px; font-family: 'Roc Grotesk', sans-serif; transform: translateY(-50%) rotate(-90deg); transform-origin: left center; color: white; font-size: 0.867rem;">Portfolio</div>
+<div style="position: fixed; top: 50%; right: 50px; font-family: 'Roc Grotesk', sans-serif; transform: translateY(-50%) rotate(90deg); transform-origin: right center; color: white; font-size: 0.867rem;$1">Portfolio</div>
+<div class="scroll-arrow" style="position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); z-index: 10;">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" style="animation: bounce 2s infinite; border-radius: 50%; background: white; padding: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.2);">
+    <path d="M12 5v14m0 0l-6-6m6 6l6-6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+</div>
+<section id="scroll-target" style="height: 100vh; background: #111; display: flex; align-items: center; justify-content: center; font-family: 'Lexend', sans-serif; color: grey; font-size: 1rem; position: relative;">
+  Scroll Target Section
+  <div onclick="scrollToTop()" style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); cursor: pointer; opacity: 1; transition: opacity 0.5s ease;" id="scrollUpBtn">
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" style="animation: bounce 2s infinite; border-radius: 50%; background: white; padding: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.2);">
+      <path d="M12 19V5m0 0l-6 6m6-6l6 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+$1
+<section style="color: #fff; padding: 80px 5%; font-family: 'Lexend', sans-serif; text-align: left;">
+  <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem;">Bold Header Text</h2>
+  <p style="font-size: 1rem; max-width: 600px;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</p>
+</section>
+<script>
+function scrollToSection() {
+  const section = document.getElementById('scroll-target');
+  const arrow = document.querySelector('.scroll-arrow');
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+    arrow.style.transition = 'opacity 0.5s ease';
+    arrow.style.opacity = '0';
+    setTimeout(() => arrow.style.display = 'none', 500);
+  }
+}
+function scrollToTop() {
+  const arrow = document.querySelector('.scroll-arrow');
+  const upArrow = document.getElementById('scrollUpBtn');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  arrow.style.display = 'block';
+  setTimeout(() => arrow.style.opacity = '1', 10);
+  upArrow.style.opacity = '0';
+  setTimeout(() => upArrow.style.display = 'none', 500);
+}
+document.querySelector('.scroll-arrow')?.addEventListener('click', scrollToSection);
+</script>
+</body>
+</html>

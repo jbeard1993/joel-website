@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio Template</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      color: white;
+      font-family: sans-serif;
+    }
+    .header {
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      background: black;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      padding: 1rem 5vw;
+      align-items: center;
+    }
+    .logo-placeholder img {
+      height: 40px;
+    }
+    .right-links {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .text-link {
+      font-size: 1rem;
+      color: white;
+      text-decoration: none;
+      position: relative;
+    }
+    .text-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: white;
+      transition: width 0.3s ease;
+    }
+    .text-link:hover::after {
+      width: 100%;
+    }
+    .right-links img {
+      height: 1rem;
+      width: 1rem;
+    }
+    .parallax-video {
+      position: relative;
+      overflow: hidden;
+      height: 500px;
+      width: 100%;
+      z-index: 0;
+    }
+    .parallax-video video {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+      will-change: transform;
+    }
+    .filters {
+      margin-top: 140px;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 1rem;
+    }
+    .filters button {
+      background: transparent;
+      color: white;
+      border: 1px solid white;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .filters button:hover {
+      background: white;
+      color: black;
+    }
+    .filters button.active {
+      background: white;
+      color: black;
+    }
+    .gallery {
+      padding: 2rem 5vw;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      transform: translateY(20px);
+      opacity: 0;
+      transition: all 0.6s ease, transform 0.6s ease;
+      aspect-ratio: 4 / 5;
+    }
+    .gallery-item.visible {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .overlay-caption {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      text-align: center;
+      font-size: 1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-item:hover .overlay-caption {
+      opacity: 1;
+    }
+    .fade-out,
+    .fade-in {
+      height: 80px;
+      background: linear-gradient(to bottom, transparent, black);
+      position: fixed;
+      width: 100%;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+      z-index: 999;
+    }
+    .fade-in {
+      top: 0;
+      background: linear-gradient(to top, transparent, black);
+    }
+    .fade-out {
+      bottom: 0;
+    }
+    .fade-in.hidden,
+    .fade-out.hidden {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="top-bar">
+      <div class="logo-placeholder"><a href="/"><img src="DesignLogoFinal-01-white.png" alt="Logo"></a></div>
+      <div class="right-links">
+        <a href="./index.html" class="text-link">Work</a>
+        <a href="./about_page.html" class="text-link">About</a>
+        <a href="#" class="text-link"><img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram"></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="parallax-video">
+    <video id="parallaxVid" autoplay muted loop playsinline>
+      <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <div class="filters">
+    <button onclick="filterItems('all', this)">All</button>
+    <button onclick="filterItems('design', this)">Design</button>
+    <button onclick="filterItems('motion', this)">Motion</button>
+    <button onclick="filterItems('art', this)">Art</button>
+  </div>
+
+  <main class="gallery" id="gallery">
+    <a class="gallery-item design visible" href="#"><img src="https://dummyimage.com/300x400/000/fff&text=Design+1"><div class="overlay-caption">Design 1</div></a>
+    <a class="gallery-item motion visible" href="#"><img src="https://dummyimage.com/300x400/111/fff&text=Motion+1"><div class="overlay-caption">Motion 1</div></a>
+    <a class="gallery-item art visible" href="#"><img src="https://dummyimage.com/300x400/222/fff&text=Art+1"><div class="overlay-caption">Art 1</div></a>
+    <a class="gallery-item design visible" href="#"><img src="https://dummyimage.com/300x400/333/fff&text=Design+2"><div class="overlay-caption">Design 2</div></a>
+    <a class="gallery-item motion visible" href="#"><img src="https://dummyimage.com/300x400/444/fff&text=Motion+2"><div class="overlay-caption">Motion 2</div></a>
+    <a class="gallery-item art visible" href="#"><img src="https://dummyimage.com/300x400/555/fff&text=Art+2"><div class="overlay-caption">Art 2</div></a>
+  </main>
+
+  <div class="fade-in" id="fadeTop"></div>
+  <div class="fade-out" id="fadeOverlay"></div>
+
+  <script>
+    function filterItems(type, btn) {
+      const items = document.querySelectorAll('.gallery-item');
+      const buttons = document.querySelectorAll('.filters button');
+      buttons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      items.forEach(item => {
+        if (type === 'all' || item.classList.contains(type)) {
+          item.style.display = 'block';
+          requestAnimationFrame(() => item.classList.add('visible'));
+        } else {
+          item.classList.remove('visible');
+          setTimeout(() => item.style.display = 'none', 300);
+        }
+      });
+    }
+
+    const parallaxVid = document.getElementById('parallaxVid');
+    window.addEventListener('scroll', () => {
+      const offset = window.pageYOffset;
+      parallaxVid.style.transform = `translate(-50%, ${offset * 0.3}px)`;
+    });
+  </script>
+</body>
+</html>
